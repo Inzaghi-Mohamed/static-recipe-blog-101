@@ -10,6 +10,8 @@ import matter from "gray-matter" // Parses front-matter from markdown files
  * @param {string} slug - The unique identifier for the recipe
  * @returns {Object} - The parsed markdown content including frontmatter
  */
+
+// Function to get the content of a markdown file for a specific recipe 
 function getPostContent(slug) {
     // Define the folder where recipe markdown files are stored
     const folder = 'recipes/'
@@ -28,8 +30,12 @@ function getPostContent(slug) {
  * This is used by Next.js for static site generation (SSG)
  * @returns {Array<Object>} Array of objects containing slug parameters
  */
+
+// Function to generate static parameters for all recipe pages at build time    
 export const generateStaticParams = async () => {
+    // Get all recipe metadata  
     const posts = getPostMetadata('recipes')
+    // Map each recipe to a page with a slug parameter
     return posts.map((post) => ({ slug: post.slug }))
 }
 
